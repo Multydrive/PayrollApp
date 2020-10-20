@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ProjectEPM</name>
-	<comment>Project ProjectEPM created by Buildship.</comment>
+	<name>EPM-Core</name>
+	<comment>Project EPM-Core created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1603195654386</id>
+			<id>1603194883598</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

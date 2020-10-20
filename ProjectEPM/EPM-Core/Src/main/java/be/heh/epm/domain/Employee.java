@@ -12,10 +12,13 @@ public class Employee {
         this.name = name;
         this.address = address;
     }
+
     public void setPayClassification(PayClassification calcul){
         this.pay = calcul;
     }
-    public void setPayClassification(PaymentSchedule daySchedule){
+
+    public void setPaymentSchedule(PaymentSchedule daySchedule){
         this.schedule = daySchedule;
     }
+    
 }
