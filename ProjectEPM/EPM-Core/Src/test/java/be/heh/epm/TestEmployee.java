@@ -38,6 +38,7 @@ public class TestEmployee {
 
     }
 
+    @ignore
     @Test
     public void createHourlyEmployee() {
 
@@ -67,6 +68,7 @@ public class TestEmployee {
 
     }
 
+    @ignore
     @Test
     public void monthlyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -79,6 +81,7 @@ public class TestEmployee {
 
     }
 
+    @ignore
     @Test
     public void monthlyPaymentScheduleWrong() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -91,6 +94,7 @@ public class TestEmployee {
 
     }
 
+    @ignore
     @Test
     public void weeklyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -103,6 +107,7 @@ public class TestEmployee {
 
     }
 
+    @ignore
     @Test
     public void weeklyPaymentScheduleWrong() {
         employee.setPayClassification(new SalariedClassification(1000));

@@ -3,6 +3,8 @@ public class Employee {
 
     private PayClassification pay;
     private PaymentSchedule schedule;
+    private PayMethod method;
+    private PayCheck check;
     private int id;
     private String name;
     private String address;
@@ -17,8 +19,24 @@ public class Employee {
         this.pay = calcul;
     }
 
-    public void setPaymentSchedule(PaymentSchedule daySchedule){
+    public void setPaySchedule(PaymentSchedule daySchedule){
         this.schedule = daySchedule;
     }
-    
+
+    public void setPayMethod(PayMethod choiceMethod) {
+        this.method = choiceMethod;
+    }
+
+    public void payday(PayCheck verification) {
+        this.check = verification;
+    }
+
+    public PaymentSchedule getPaySchedule() {
+        return this.schedule;
+    }
+
+    public PaymentMethod getPayMethod() {
+        return this.method;
+    }
+
 }

@@ -4,8 +4,12 @@ import static java.time.Month.*;
 import java.time.temporal.TemporalAdjusters;
 
 public class MonthlyPaymentSchedule implements PaymentSchedule{
-    public LocalDate paymentDate(){
+    @override
+    public boolean paymentDate(){
         LocalDate lastDayofCurrentMonth = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
-        return lastDayofCurrentMonth;
+        if (LocalDate.now() == lastDayofCurrentMonth) {
+            return True;
+        }
+        else return False;
     }
 }

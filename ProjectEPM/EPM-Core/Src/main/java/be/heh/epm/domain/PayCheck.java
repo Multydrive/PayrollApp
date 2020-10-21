@@ -2,15 +2,13 @@ package be.heh.epm.domain;
 import java.time.LocalDate;
 
 public class PayCheck {
-    
+    @Getter
     private LocalDate date;
-    private LocalDate getDate () {
-        return this.date;
-    }
-
+    @Getter
     private double salary;
-    private double getSalary () {
-        return this.salary;
+
+    public PayCheck(LocalDate date){
+        this.date = date;
     }
 
     public void setPay (double salary) {
