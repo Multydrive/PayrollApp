@@ -1,5 +1,7 @@
 package be.heh.epm.domain;
-public class DirectDepositMethod implements PayMethod {
+import lombok.Getter;
+import lombok.Setter;
+public class DirectDepositMethod implements PaymentMethod {
     @Getter @Setter
     private String bank;
     @Getter @Setter

@@ -1,4 +1,4 @@
 package be.heh.epm.domain;
-public interface PayClassification {
+public interface PaymentClassification {
     public abstract double calculatePay();
 }

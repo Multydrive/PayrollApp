@@ -1,7 +1,8 @@
-package be.heh.epm.domain;
-
+package be.heh.epm;
+import be.heh.epm.domain.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import java.time.LocalDate;
 
@@ -21,14 +22,14 @@ public class TestEmployee {
 
     @Test
     public void createSalariedEmployee() {
-
         employee.setPayClassification(new SalariedClassification(1000));
         employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
         employee.setPaySchedule(new MonthlyPaymentSchedule());
-
+        
         employee.payDay(pc);
         double pay = pc.getSalary();
         assertEquals(1000.0, pay, 0.01);
+        
 
         PaymentSchedule ps = employee.getPaySchedule();
         assertTrue(ps instanceof MonthlyPaymentSchedule);
@@ -38,7 +39,7 @@ public class TestEmployee {
 
     }
 
-    @ignore
+   /* @Ignore
     @Test
     public void createHourlyEmployee() {
 
@@ -68,7 +69,7 @@ public class TestEmployee {
 
     }
 
-    @ignore
+    @Ignore
     @Test
     public void monthlyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -81,7 +82,7 @@ public class TestEmployee {
 
     }
 
-    @ignore
+    @Ignore
     @Test
     public void monthlyPaymentScheduleWrong() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -94,7 +95,7 @@ public class TestEmployee {
 
     }
 
-    @ignore
+    @Ignore
     @Test
     public void weeklyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -107,7 +108,7 @@ public class TestEmployee {
 
     }
 
-    @ignore
+    @Ignore
     @Test
     public void weeklyPaymentScheduleWrong() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -118,5 +119,5 @@ public class TestEmployee {
 
         assertFalse(employee.isDatePay(MondayDate));
 
-    }
+    }*/
 }

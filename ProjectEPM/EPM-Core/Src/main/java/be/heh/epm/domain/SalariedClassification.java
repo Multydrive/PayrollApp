@@ -1,5 +1,5 @@
 package be.heh.epm.domain;
-public class SalariedClassification implements PayClassification{
+public class SalariedClassification implements PaymentClassification{
     private double salary;
 
     public SalariedClassification(double value){
@@ -7,7 +7,7 @@ public class SalariedClassification implements PayClassification{
     }
 
     @Override
-    public double calculatePay(double salary){
+    public double calculatePay(){
         return salary;
     }
 }

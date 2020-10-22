@@ -1,21 +1,23 @@
 package be.heh.epm.domain;
 public class Employee {
 
-    private PayClassification pay;
+    private PaymentClassification pay;
     private PaymentSchedule schedule;
-    private PayMethod method;
+    private PaymentMethod method;
     private PayCheck check;
     private int id;
     private String name;
     private String address;
-
-    public Employee(int id, String name, String address){
+    private String mail;
+    
+    public Employee(int id, String name, String address, String mail){
         this.id = id;
         this.name = name;
         this.address = address;
+        this.mail = mail;
     }
 
-    public void setPayClassification(PayClassification calcul){
+    public void setPayClassification(PaymentClassification calcul){
         this.pay = calcul;
     }
 
@@ -23,12 +25,13 @@ public class Employee {
         this.schedule = daySchedule;
     }
 
-    public void setPayMethod(PayMethod choiceMethod) {
+    public void setPayMethod(PaymentMethod choiceMethod) {
         this.method = choiceMethod;
     }
 
-    public void payday(PayCheck verification) {
+    public void payDay(PayCheck verification) {
         this.check = verification;
+        check.setPay(this.pay.calculatePay());
     }
 
     public PaymentSchedule getPaySchedule() {

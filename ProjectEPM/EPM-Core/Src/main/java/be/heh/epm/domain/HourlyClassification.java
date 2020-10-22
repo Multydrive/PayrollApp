@@ -1,6 +1,8 @@
 package be.heh.epm.domain;
-public class HourlyClassification implements PayClassification{
-    private double amount;
-    
-    public double calculatePay(){}
+public class HourlyClassification implements PaymentClassification{
+    private double salary;
+    @Override
+    public double calculatePay(){
+        return salary;
+    }
 }

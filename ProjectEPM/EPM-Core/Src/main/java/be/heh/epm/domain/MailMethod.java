@@ -1,6 +1,6 @@
 package be.heh.epm.domain;
-public class MailMethod implements PayMethod{
+public class MailMethod implements PaymentMethod{
     private String email;
     public MailMethod(String email){}
-    public String toString(){}
+    public String toString(){return "";}
 }
