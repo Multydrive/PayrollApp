@@ -69,7 +69,7 @@ public class TestEmployee {
 
     }
 
-    /*@Ignore
+    
     @Test
     public void monthlyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -82,7 +82,7 @@ public class TestEmployee {
 
     }
 
-    @Ignore
+    
     @Test
     public void monthlyPaymentScheduleWrong() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -95,7 +95,7 @@ public class TestEmployee {
 
     }
 
-    @Ignore
+    
     @Test
     public void weeklyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -108,7 +108,7 @@ public class TestEmployee {
 
     }
 
-    @Ignore
+    
     @Test
     public void weeklyPaymentScheduleWrong() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -119,5 +119,34 @@ public class TestEmployee {
 
         assertFalse(employee.isDatePay(MondayDate));
 
-    }*/
+    }
+
+    @Test
+    public void createCommissionEmployee() {
+
+        employee.setPayClassification(new Commissionsification();
+        employee.setPayMethod(new MailMethod(employee.getMail()));
+        employee.setPaySchedule(new WeeklyPaymentSchedule());
+
+        LocalDate date = LocalDate.of(2019, 10, 1);
+        LocalDate nextDate = LocalDate.of(2019, 10, 2);
+        LocalDate dateOutside = LocalDate.of(2019, 9, 2);
+
+        PaymentClassification classification = employee.getPayClassification();
+        ((HourlyClassification) classification).addTimeCard(new TimeCard(date, 8.0));
+        ((HourlyClassification) classification).addTimeCard(new TimeCard(nextDate, 10.0));
+        ((HourlyClassification) classification).addTimeCard(new TimeCard(dateOutside, 8.0));
+
+        employee.payDay(pc);
+        double pay = pc.getSalary();
+
+        assertEquals(380.0, pay, 0.01);
+
+        PaymentSchedule ps = employee.getPaySchedule();
+        assertTrue(ps instanceof WeeklyPaymentSchedule);
+
+        PaymentMethod pm = employee.getPayMethod();
+        assertEquals("mail : toto@gmail.com", pm.toString());
+
+    }
 }

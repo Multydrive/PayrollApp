@@ -1,4 +1,7 @@
 package be.heh.epm.domain;
+
+import java.time.LocalDate;
+
 public class Employee {
 
     private PaymentClassification pay;
@@ -48,4 +51,17 @@ public class Employee {
         return this.pay;
     }
 
+    public boolean isDatePay(LocalDate datePay){
+        return schedule.paymentDate(datePay);
+    }
 }
+
+
+
+
+
+
+
+
+
+

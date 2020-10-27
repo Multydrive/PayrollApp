@@ -5,9 +5,9 @@ import java.time.temporal.TemporalAdjusters;
 
 public class MonthlyPaymentSchedule implements PaymentSchedule{
     @Override
-    public boolean paymentDate(){
-        LocalDate lastDayofCurrentMonth = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
-        if (LocalDate.now() == lastDayofCurrentMonth) {
+    public boolean paymentDate(LocalDate datePay){
+        LocalDate lastDayofCurrentMonth = datePay.with(TemporalAdjusters.lastDayOfMonth());
+        if (datePay == lastDayofCurrentMonth) {
             return true;
         }
         else return false;
