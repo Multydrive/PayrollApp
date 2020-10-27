@@ -16,7 +16,6 @@ public class Employee {
         this.address = address;
         this.mail = mail;
     }
-
     public void setPayClassification(PaymentClassification calcul){
         this.pay = calcul;
     }
@@ -31,7 +30,7 @@ public class Employee {
 
     public void payDay(PayCheck verification) {
         this.check = verification;
-        check.setPay(this.pay.calculatePay());
+        check.setPay(this.pay.calculatePay(check.getDate()));
     }
 
     public PaymentSchedule getPaySchedule() {
@@ -40,6 +39,13 @@ public class Employee {
 
     public PaymentMethod getPayMethod() {
         return this.method;
+    }
+
+    public String getMail() {
+        return this.mail;
+    }
+    public PaymentClassification getPayClassification(){
+        return this.pay;
     }
 
 }

@@ -39,7 +39,7 @@ public class TestEmployee {
 
     }
 
-   /* @Ignore
+   
     @Test
     public void createHourlyEmployee() {
 
@@ -69,7 +69,7 @@ public class TestEmployee {
 
     }
 
-    @Ignore
+    /*@Ignore
     @Test
     public void monthlyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));

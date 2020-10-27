@@ -1,4 +1,5 @@
 package be.heh.epm.domain;
+import java.time.LocalDate;
 public class SalariedClassification implements PaymentClassification{
     private double salary;
 
@@ -7,7 +8,7 @@ public class SalariedClassification implements PaymentClassification{
     }
 
     @Override
-    public double calculatePay(){
+    public double calculatePay(LocalDate payDate){
         return salary;
     }
 }
