@@ -7,11 +7,11 @@ public class SaleReceipt {
     @Getter
     private LocalDate date;
     @Getter
-    private double time;
+    private double sale;
     
 
-    public SaleReceipt(LocalDate date, double time){
+    public SaleReceipt(LocalDate date, double sale){
         this.date = date;
-        this.time = time;
+        this.sale = sale;
     }
 }

@@ -124,7 +124,7 @@ public class TestEmployee {
     @Test
     public void createCommissionEmployee() {
 
-        employee.setPayClassification(new Commissionsification();
+        employee.setPayClassification(new CommissionClassification(1200));
         employee.setPayMethod(new MailMethod(employee.getMail()));
         employee.setPaySchedule(new WeeklyPaymentSchedule());
 
@@ -133,20 +133,42 @@ public class TestEmployee {
         LocalDate dateOutside = LocalDate.of(2019, 9, 2);
 
         PaymentClassification classification = employee.getPayClassification();
-        ((HourlyClassification) classification).addTimeCard(new TimeCard(date, 8.0));
-        ((HourlyClassification) classification).addTimeCard(new TimeCard(nextDate, 10.0));
-        ((HourlyClassification) classification).addTimeCard(new TimeCard(dateOutside, 8.0));
+        ((CommissionClassification) classification).addSaleReceipt(new SaleReceipt (date, 120));
+        ((CommissionClassification) classification).addSaleReceipt(new SaleReceipt(nextDate, 100));
+        ((CommissionClassification) classification).addSaleReceipt(new SaleReceipt(dateOutside, 80));
 
         employee.payDay(pc);
         double pay = pc.getSalary();
 
-        assertEquals(380.0, pay, 0.01);
+        assertEquals(1222.0, pay, 0.01);
 
         PaymentSchedule ps = employee.getPaySchedule();
         assertTrue(ps instanceof WeeklyPaymentSchedule);
 
         PaymentMethod pm = employee.getPayMethod();
         assertEquals("mail : toto@gmail.com", pm.toString());
+    }
 
+    @Test
+    public void biMonthlyPaymentSchedule() {
+        employee.setPayClassification(new SalariedClassification(1000));
+        employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
+        employee.setPaySchedule(new BimonthlyPaymentSchedule());
+
+        LocalDate fridayDate = LocalDate.of(2020, 10, 2);
+
+        assertTrue(employee.isDatePay(fridayDate));
+    }
+
+    
+    @Test
+    public void biMonthlyPaymentScheduleWrong() {
+        employee.setPayClassification(new SalariedClassification(1000));
+        employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
+        employee.setPaySchedule(new BimonthlyPaymentSchedule());
+
+        LocalDate MondayDate = LocalDate.of(2020, 10, 1);
+
+        assertFalse(employee.isDatePay(MondayDate));
     }
 }

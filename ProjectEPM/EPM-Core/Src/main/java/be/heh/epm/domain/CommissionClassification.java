@@ -8,44 +8,39 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class CommissionClassification implements PaymentClassification{
-    private Map<LocalDate, TimeCard> pointers = new HashMap<LocalDate, TimeCard>();
-    private TimeCard c;
-    private double salary;
+    private Map<LocalDate, SaleReceipt> receipt = new HashMap<LocalDate, SaleReceipt>();
+    private SaleReceipt s;
+    private double commission;
     @Setter
     private double amount;
-    public CommissionClassification(double hours){
-        this.amount = hours;
+    public CommissionClassification(double sale){
+        this.amount = sale;
     }
     @Override
     public double calculatePay(LocalDate payDate){
         LocalDate dt = payDate;
         dt = dt.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
         
-        Iterator iterator = pointers.entrySet().iterator();
+        Iterator iterator = receipt.entrySet().iterator();
         
         while (iterator.hasNext()) {
             Map.Entry mapentry = (Map.Entry) iterator.next();
-            TimeCard tps =pointers.get(mapentry.getKey());
-            if( tps.getDate().isAfter(dt)){
-                
-                TimeCard h =pointers.get(mapentry.getKey());
-                if(h.getTime()<8){
-                    this.salary+=h.getTime()*amount;
-                }
-                else{
-                    this.salary+=(8*amount)+(((h.getTime()-8)*1.5)*amount);
-                }
+            SaleReceipt tps = receipt.get(mapentry.getKey());
+            if( tps.getDate().isAfter(dt)){              
+                SaleReceipt h =receipt.get(mapentry.getKey());           
+                this.commission+=h.getSale()*10/100;              
             }
         }
+        double salary = commission + amount;
         return salary;
     }
-    public void addTimeCard(TimeCard tc){
-        this.c = tc;
+    public void addSaleReceipt(SaleReceipt sr){
+        this.s = sr;
         
-        setPointers(tc.getDate(), tc);
+        setPointers(sr.getDate(), sr);
     }
-    public void setPointers(LocalDate dateP, TimeCard value) {
-        pointers.put(dateP, value);
+    public void setPointers(LocalDate dateP, SaleReceipt sale) {
+        receipt.put(dateP, sale);
     }
 
 }
