@@ -1,6 +1,10 @@
 package be.heh.epm.domain;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalAdjusters;
+import java.time.DayOfWeek;
 
 public class Employee {
 
@@ -52,7 +56,8 @@ public class Employee {
     }
 
     public boolean isDatePay(LocalDate datePay){
-        return schedule.paymentDate(datePay);
+        boolean anwser = schedule.paymentDate(datePay);
+        return anwser;      
     }
 }
 

@@ -19,7 +19,7 @@ public class TestEmployee {
         LocalDate payDate = LocalDate.of(2019, 10, 2);
         pc = new PayCheck(payDate);
     }
-
+    
     @Test
     public void createSalariedEmployee() {
         employee.setPayClassification(new SalariedClassification(1000));
@@ -148,16 +148,16 @@ public class TestEmployee {
         PaymentMethod pm = employee.getPayMethod();
         assertEquals("mail : toto@gmail.com", pm.toString());
     }
-
+    
+    
     @Test
     public void biMonthlyPaymentSchedule() {
         employee.setPayClassification(new SalariedClassification(1000));
         employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
         employee.setPaySchedule(new BimonthlyPaymentSchedule());
 
-        LocalDate fridayDate = LocalDate.of(2020, 10, 2);
-
-        assertTrue(employee.isDatePay(fridayDate));
+        LocalDate fridayDate = LocalDate.of(2020, 10, 9);
+        assertTrue(employee.isDatePay(fridayDate));       
     }
 
     
@@ -167,8 +167,8 @@ public class TestEmployee {
         employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
         employee.setPaySchedule(new BimonthlyPaymentSchedule());
 
-        LocalDate MondayDate = LocalDate.of(2020, 10, 1);
-
+        LocalDate MondayDate = LocalDate.of(2020, 10, 8);
         assertFalse(employee.isDatePay(MondayDate));
     }
+    
 }
