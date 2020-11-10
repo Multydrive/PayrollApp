@@ -1,5 +1,7 @@
 package be.heh.epm.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoField;
@@ -12,9 +14,13 @@ public class Employee {
     private PaymentSchedule schedule;
     private PaymentMethod method;
     private PayCheck check;
+    @Getter
     private int id;
+    @Getter
     private String name;
+    @Getter
     private String address;
+    @Getter
     private String mail;
     
     public Employee(int id, String name, String address, String mail){
@@ -47,10 +53,7 @@ public class Employee {
     public PaymentMethod getPayMethod() {
         return this.method;
     }
-
-    public String getMail() {
-        return this.mail;
-    }
+  
     public PaymentClassification getPayClassification(){
         return this.pay;
     }
@@ -59,6 +62,7 @@ public class Employee {
         boolean anwser = schedule.paymentDate(datePay);
         return anwser;      
     }
+
 }
 
 
