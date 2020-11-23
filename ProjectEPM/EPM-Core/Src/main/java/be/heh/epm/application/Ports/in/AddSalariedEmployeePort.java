@@ -2,7 +2,7 @@ package be.heh.epm.application.ports.in;
 import be.heh.epm.domain.*;
 import lombok.Getter;
 
-public interface IAddSalariedEmployee{
+public interface AddSalariedEmployeePort {
     
     public int id = 0;
     
@@ -13,5 +13,4 @@ public interface IAddSalariedEmployee{
     public String mail = " test";
     
     public double monthlySalary = 10;
- 
 }

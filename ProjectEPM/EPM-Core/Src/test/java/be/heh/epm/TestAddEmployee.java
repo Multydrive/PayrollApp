@@ -10,8 +10,7 @@ import org.junit.Ignore;
 
 import static org.junit.Assert.*;
 
-  
-//@SpringBootTest 
+
 public class TestAddEmployee {
     private EmployeeGateway employeeGateway;
 
