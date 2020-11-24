@@ -1,4 +1,7 @@
-package be.heh.epm;
+package be.heh.epm.adapter.web;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import be.heh.epm.domain.*;
 import be.heh.epm.application.ports.in.*;
@@ -27,10 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 import org.springframework.http.HttpHeaders;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TestAPI {
+@SpringBootTest
+class TestAPI {
 
 	@Autowired
     private MockMvc mvc;
@@ -42,8 +45,17 @@ public class TestAPI {
         mvc.perform( post("/employees/salaried")
             .content(asJsonString(postEmployee))
             .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON)
             .andExpect(status().isCreated())
             .andExpect(header().string(HttpHeaders.LOCATION,"http://localhost:8080/employees/salaried/1")));
-    }     
+    }
+    
+    public static String asJsonString(final Object obj){
+        try{ 
+            return new ObjectMapper.writeValueAsString(obj); 
+        }
+        catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }

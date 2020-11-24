@@ -9,3 +9,4 @@
 
 rootProject.name = 'ProjectEPM'
 include 'EPM-Core'
+include 'Adaptateurs:EPM-Web:web'
