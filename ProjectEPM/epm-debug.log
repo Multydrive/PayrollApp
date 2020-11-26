@@ -1,5 +1,5 @@
-2020-11-25 16:43:04.127  INFO 9420 --- [main] be.heh.epm.database.Test                 : Starting Test on ANDREAS with PID 9420 (C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main started by Admin in C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM)
-2020-11-25 16:43:04.129  INFO 9420 --- [main] be.heh.epm.database.Test                 : No active profile set, falling back to default profiles: default
+2020-11-25 16:43:04.127  INFO 9420 --- [main] Test                 : Starting Test on ANDREAS with PID 9420 (C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main started by Admin in C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM)
+2020-11-25 16:43:04.129  INFO 9420 --- [main] Test                 : No active profile set, falling back to default profiles: default
 2020-11-25 16:43:04.590  INFO 9420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
 2020-11-25 16:43:04.591  INFO 9420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
 2020-11-25 16:43:04.610  INFO 9420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14ms. Found 0 JDBC repository interfaces.
@@ -9,7 +9,7 @@
 2020-11-25 16:43:04.927  INFO 9420 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
 2020-11-25 16:43:04.934  INFO 9420 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2020-11-25 16:43:04.977  INFO 9420 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-11-25 16:43:05.018  WARN 9420 --- [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'insertDataBase' defined in file [C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main\be\heh\epm\database\InsertDataBase.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [be.heh.epm.database.InsertDataBase]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
+2020-11-25 16:43:05.018  WARN 9420 --- [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'insertDataBase' defined in file [C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main\be\heh\epm\database\InsertDataBase.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [InsertDataBase]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
 2020-11-25 16:43:05.019  INFO 9420 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-11-25 16:43:05.033  INFO 9420 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
 2020-11-25 16:43:05.091  INFO 9420 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
@@ -26,7 +26,7 @@
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2020-11-25 16:43:05.571 ERROR 9420 --- [main] o.s.boot.SpringApplication               : Application run failed
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'insertDataBase' defined in file [C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main\be\heh\epm\database\InsertDataBase.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [be.heh.epm.database.InsertDataBase]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'insertDataBase' defined in file [C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main\be\heh\epm\database\InsertDataBase.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [InsertDataBase]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1318) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1213) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
@@ -44,8 +44,8 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.3.4.RELEASE.jar:2.3.4.RELEASE]
-	at be.heh.epm.database.Test.main(Test.java:10) ~[main/:na]
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [be.heh.epm.database.InsertDataBase]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
+	at Test.main(Test.java:10) ~[main/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [InsertDataBase]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:217) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1310) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
@@ -55,7 +55,7 @@ Caused by: java.lang.IllegalArgumentException: Property 'dataSource' is required
 	at org.springframework.jdbc.core.JdbcTemplate.<init>(JdbcTemplate.java:166) ~[spring-jdbc-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	at org.springframework.jdbc.core.simple.AbstractJdbcInsert.<init>(AbstractJdbcInsert.java:97) ~[spring-jdbc-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	at org.springframework.jdbc.core.simple.SimpleJdbcInsert.<init>(SimpleJdbcInsert.java:60) ~[spring-jdbc-5.2.9.RELEASE.jar:5.2.9.RELEASE]
-	at be.heh.epm.database.InsertDataBase.<init>(InsertDataBase.java:15) ~[main/:na]
+	at InsertDataBase.<init>(InsertDataBase.java:15) ~[main/:na]
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
@@ -64,3 +64,28 @@ Caused by: java.lang.IllegalArgumentException: Property 'dataSource' is required
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:204) ~[spring-beans-5.2.9.RELEASE.jar:5.2.9.RELEASE]
 	... 19 common frames omitted
 
+2020-11-25 16:44:30.630  INFO 18316 --- [main] Test                 : Starting Test on ANDREAS with PID 18316 (C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM\Adaptateurs\EPM-Persistence\build\classes\java\main started by Admin in C:\Users\Admin\github\EPM---Groupe-2(new)\EPM---Groupe-2\ProjectEPM)
+2020-11-25 16:44:30.633  INFO 18316 --- [main] Test                 : No active profile set, falling back to default profiles: default
+2020-11-25 16:44:31.056  INFO 18316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-25 16:44:31.056  INFO 18316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2020-11-25 16:44:31.072  INFO 18316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 JDBC repository interfaces.
+2020-11-25 16:44:31.087  INFO 18316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-25 16:44:31.087  INFO 18316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-25 16:44:31.095  INFO 18316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3ms. Found 0 JPA repository interfaces.
+2020-11-25 16:44:31.391  INFO 18316 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-25 16:44:31.403  INFO 18316 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-25 16:44:31.439  INFO 18316 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-25 16:44:31.481  INFO 18316 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-25 16:44:31.543  INFO 18316 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-25 16:44:31.647  INFO 18316 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-11-25 16:44:31.647  INFO 18316 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-11-25 16:44:31.655  INFO 18316 --- [main] Test                 : Started Test in 1.367 seconds (JVM running for 2.519)
+2020-11-25 16:44:31.678  INFO 18316 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-25 16:44:31.770  INFO 18316 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-11-25 16:44:31.955  INFO 18316 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-25 16:44:31.961  INFO 18316 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-25 16:45:31.968  INFO 18316 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-25 16:45:31.969  INFO 18316 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-11-25 16:45:31.972  INFO 18316 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-25 16:45:31.973  INFO 18316 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-11-25 16:45:31.987  INFO 18316 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

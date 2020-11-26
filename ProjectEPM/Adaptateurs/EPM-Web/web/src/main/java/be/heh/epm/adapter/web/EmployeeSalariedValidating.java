@@ -1,9 +1,9 @@
-package be.heh.epm.adaptater.persistence;
+package be.heh.epm.adapter.web;
 
 
 public class EmployeeSalariedValidating {
 
-    private int empId  ;
+    private int empId = 100 ;
 
     private String name = "toto";
 
@@ -12,8 +12,6 @@ public class EmployeeSalariedValidating {
     private String mail = "toto@heh.be";
 
     private double monthlySalary = 1500;
-
-    private String employeeClassification;
 
     public EmployeeSalariedValidating (){
 
@@ -67,13 +65,5 @@ public class EmployeeSalariedValidating {
 
     public void setMonthlySalary(double monthlySalary) {
         this.monthlySalary = monthlySalary;
-    }
-
-    public String getEmployeeClassification() {
-        return employeeClassification;
-    }
-
-    public void setEmployeeClassification(String employeeClassification) {
-        this.employeeClassification = employeeClassification;
     }
 }

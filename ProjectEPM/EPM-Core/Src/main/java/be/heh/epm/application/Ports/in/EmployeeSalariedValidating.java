@@ -27,4 +27,5 @@ public class EmployeeSalariedValidating {
         this.mail = mail;
         this.monthlySalary = monthlySalary;
     }
+
 }

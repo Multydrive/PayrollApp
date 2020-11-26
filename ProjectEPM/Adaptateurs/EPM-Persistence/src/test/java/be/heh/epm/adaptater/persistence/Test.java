@@ -1,4 +1,4 @@
-package be.heh.epm.database;
+package be.heh.epm.adaptater.persistence;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

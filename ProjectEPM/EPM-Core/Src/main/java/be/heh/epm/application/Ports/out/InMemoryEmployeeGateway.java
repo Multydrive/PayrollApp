@@ -1,14 +1,17 @@
 package be.heh.epm.application.ports.out;
 
+import be.heh.epm.database;
 import be.heh.epm.domain.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.HashMap;
 
 public class InMemoryEmployeeGateway implements EmployeeGateway { 
-    private HashMap<Integer, Employee> dbEmployee = new HashMap<Integer, Employee>();
+
+    private RelationalDataAccessApplication dbEmployee = new RelationalDataAccessApplication;
 
     public void save (int Id, Employee e) {
+
         dbEmployee.put(Id, e);
     }
 
@@ -17,4 +20,3 @@ public class InMemoryEmployeeGateway implements EmployeeGateway {
         return e ;
     }
 }
-

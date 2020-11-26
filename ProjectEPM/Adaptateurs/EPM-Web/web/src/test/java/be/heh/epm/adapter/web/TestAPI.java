@@ -1,6 +1,7 @@
 package be.heh.epm.adapter.web;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import be.heh.epm.domain.*;
@@ -32,6 +33,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import org.springframework.http.HttpHeaders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@WebMvcTest(controllers = EmployeeController.class)
 @SpringBootTest
 class TestAPI {
 
@@ -44,14 +46,14 @@ class TestAPI {
         EmployeeSalariedValidating postEmployee = new EmployeeSalariedValidating(1, "toto", "rue de Mons", "toto@gmail.com",1500);
         mvc.perform( post("/employees/salaried")
             .content(asJsonString(postEmployee))
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated())
-            .andExpect(header().string(HttpHeaders.LOCATION,"http://localhost:8080/employees/salaried/1")));
+            .andExpect(header().string(HttpHeaders.LOCATION,"http://localhost:8080/employees/salaried/1"));
     }
     
-    public static String asJsonString(final Object obj){
-        try{ 
-            return new ObjectMapper.writeValueAsString(obj); 
+    static String asJsonString(final Object obj){
+        try{
+            return new ObjectMapper().writeValueAsString(obj);
         }
         catch(Exception e){
             throw new RuntimeException(e);
