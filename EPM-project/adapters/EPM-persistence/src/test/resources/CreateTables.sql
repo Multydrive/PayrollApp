@@ -1,24 +1,52 @@
-CREATE TABLE IF NOT EXISTS public."EMPLOYEE"
+CREATE TABLE IF NOT EXISTS public."employee"
 (
-    "ID" serial,
-    "PAYMENT_METHOD" character varying,
-    "PAYMENT_SCHEDULE" character varying,
-    "EMPLOYEE_CLASSIFICATION" character varying,
-    "SURNAME" character varying,
-    "FIRSTNAME" character varying,
-    "ADDRESS" character varying,
-    "MAIL" character varying,
-    PRIMARY KEY ("ID")
+    "id" serial,
+    "payment_method" character varying,
+    "payment_schedule" character varying,
+    "employee_classification" character varying,
+    "surname" character varying,
+    "firstname" character varying,
+    "address" character varying,
+    "mail" character varying,
+    PRIMARY KEY ("id")
 );
 
-CREATE TABLE IF NOT EXISTS public."SALARIEDCLASSIFICATION"
+CREATE TABLE IF NOT EXISTS public."salariedclassification"
 (
-    "ID" serial,
-    "EMPLOYEE_ID" integer,
-    "SALARY" integer,
-    PRIMARY KEY ("ID"),
-    CONSTRAINT "SALARIED_EMPLOYEE" FOREIGN KEY ("EMPLOYEE_ID")
-        REFERENCES public."EMPLOYEE" ("ID") MATCH SIMPLE
+    "id" serial,
+    "employee_id" integer,
+    "salary" integer,
+    PRIMARY KEY ("id"),
+    CONSTRAINT "salaried_employee" FOREIGN KEY ("employee_id")
+        REFERENCES public."employee" ("id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+CREATE TABLE IF NOT EXISTS public."directdepositmethod"
+(
+    id serial,
+    employe_id integer,
+    method character varying,
+    bank character varying,
+    num_account character varying,
+    PRIMARY KEY (id),
+    CONSTRAINT direct_employee FOREIGN KEY (employe_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+CREATE TABLE IF NOT EXISTS public."mailmethod"
+(
+    id serial,
+    employee_id integer,
+    method character varying,
+    PRIMARY KEY (id),
+    CONSTRAINT mail_employee FOREIGN KEY (employee_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
