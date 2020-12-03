@@ -51,3 +51,26 @@ CREATE TABLE IF NOT EXISTS public."mailmethod"
         ON DELETE NO ACTION
         NOT VALID
 );
+
+CREATE TABLE public.hourlyclassification
+(
+    id integer,
+    rate integer,
+    CONSTRAINT "EmpId" FOREIGN KEY (id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+CREATE TABLE public.timecard
+(
+    id integer,
+    date character varying(15),
+    hour integer,
+    CONSTRAINT "HourlyId" FOREIGN KEY (id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
