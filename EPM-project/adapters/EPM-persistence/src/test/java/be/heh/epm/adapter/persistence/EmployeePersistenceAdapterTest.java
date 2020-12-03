@@ -1,10 +1,7 @@
 package be.heh.epm.adapter.persistence;
 
 import be.heh.epm.application.port.out.EmployeePort;
-import be.heh.epm.domain.DirectDepositMethod;
-import be.heh.epm.domain.Employee;
-import be.heh.epm.domain.MonthlyPaymentSchedule;
-import be.heh.epm.domain.SalariedClassification;
+import be.heh.epm.domain.*;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
@@ -40,7 +37,7 @@ public class EmployeePersistenceAdapterTest {
         employeePersistenceAdapter = new EmployeePersistenceAdapter(jdbcTemplate,dataSource);
         Employee salariedEmployee = new Employee("tata", "rue des Test", "toto@heh.com");
         salariedEmployee.setPayClassification(new SalariedClassification(15000));
-        salariedEmployee.setPayMethod(new DirectDepositMethod("ING","BE5555555555"));
+        salariedEmployee.setPayMethod(new DirectDepositMethod("ING", "BE1825103631"));
         salariedEmployee.setPaySchedule(new MonthlyPaymentSchedule());
         Employee SavedEmployee = employeePersistenceAdapter.save(salariedEmployee);
         Assertions.assertEquals("tata", SavedEmployee.getName());
@@ -49,4 +46,21 @@ public class EmployeePersistenceAdapterTest {
         Assertions.assertEquals("tata", loadedEmployee.getName(), "Employee name does not match");
         Assertions.assertEquals("toto@heh.com", loadedEmployee.getMail(), "Employee mail does not match");
     }
+
+    @Test
+    void HourlyEmployeeSaveTest() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        employeePersistenceAdapter = new EmployeePersistenceAdapter(jdbcTemplate,dataSource);
+        Employee hourlyEmployee = new Employee("tutu", "rue des Test 2", "tutu@heh.com");
+        hourlyEmployee.setPayClassification(new HourlyClassification(11));
+        hourlyEmployee.setPayMethod(new MailMethod(hourlyEmployee.getMail()));
+        hourlyEmployee.setPaySchedule(new WeeklyPaymentSchedule());
+        Employee SavedEmployee = employeePersistenceAdapter.save(hourlyEmployee);
+        Assertions.assertEquals("tutu", SavedEmployee.getName());
+        Assertions.assertEquals("rue des Test 2", SavedEmployee.getAddress());
+        Employee loadedEmployee = employeePersistenceAdapter.getEmployee(SavedEmployee.getEmpID());
+        Assertions.assertEquals("tutu", loadedEmployee.getName(), "Employee name does not match");
+        Assertions.assertEquals("tutu@heh.com", loadedEmployee.getMail(), "Employee mail does not match");
+    }
+
 }

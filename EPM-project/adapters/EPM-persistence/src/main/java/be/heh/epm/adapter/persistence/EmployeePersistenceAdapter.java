@@ -2,7 +2,9 @@ package be.heh.epm.adapter.persistence;
 
 import be.heh.epm.application.port.out.EmployeePort;
 import be.heh.epm.common.PersistenceAdapter;
+import be.heh.epm.domain.DirectDepositMethod;
 import be.heh.epm.domain.Employee;
+import be.heh.epm.domain.HourlyClassification;
 import be.heh.epm.domain.SalariedClassification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +25,18 @@ public class EmployeePersistenceAdapter implements EmployeePort {
 
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert simpleJdbcInsertEmployee;
+    private final SimpleJdbcInsert simpleJdbcInsertPaymentMethod;
     private final SimpleJdbcInsert simpleJdbcInsertSalariedClassification;
+    private final SimpleJdbcInsert simpleJdbcInsertHourlyClassification;
     private final DataSource dataSource;
 
     public EmployeePersistenceAdapter(JdbcTemplate jdbcTemplate, DataSource dataSource) {
         this.jdbcTemplate = jdbcTemplate;
         this.dataSource = dataSource;
         this.simpleJdbcInsertEmployee = new SimpleJdbcInsert(dataSource).withTableName("employee").usingGeneratedKeyColumns("id");
+        this.simpleJdbcInsertPaymentMethod = new SimpleJdbcInsert(dataSource).withTableName("directdepositmethod");
         this.simpleJdbcInsertSalariedClassification = new SimpleJdbcInsert(dataSource).withTableName("salariedclassification");
+        this.simpleJdbcInsertHourlyClassification = new SimpleJdbcInsert(dataSource).withTableName("hourlyclassification");
     }
 
     @Override
@@ -77,6 +83,29 @@ public class EmployeePersistenceAdapter implements EmployeePort {
             parametersSalariedClassification.put("salary", salariedClassification.getSalary());
             simpleJdbcInsertSalariedClassification.execute(parametersSalariedClassification);
         }
+
+        else if (employee.getPayClassification().toString()=="hourly")  {
+            Map<String, Object> parametersHourlyClassification = new HashMap<>(1);
+            parametersHourlyClassification.put("id", employee.getEmpID());
+            HourlyClassification hourlyClassification = (HourlyClassification)employee.getPayClassification();
+            parametersHourlyClassification.put("rate", hourlyClassification.getHourlyRate());
+            simpleJdbcInsertHourlyClassification.execute(parametersHourlyClassification);
+        }
+
+        else {
+           int tmp;
+        }
+
+        if (employee.getPayMethod().toString()=="direct") {
+            Map<String, Object> parametersDirectDepositMethod = new HashMap<>(1);
+            parametersDirectDepositMethod.put("id", employee.getEmpID());
+            DirectDepositMethod directDeposit = (DirectDepositMethod)employee.getPayMethod();
+            parametersDirectDepositMethod.put("bank", directDeposit.getBank());
+            parametersDirectDepositMethod.put("num_account", directDeposit.getAccountNumber());
+
+            simpleJdbcInsertPaymentMethod.execute(parametersDirectDepositMethod);
+        }
+
         return employee;
     }
 

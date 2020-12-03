@@ -12,13 +12,20 @@ public class WeeklyPaymentSchedule implements PaymentSchedule {
         return dayOfWeek.equals(DayOfWeek.FRIDAY);
     }
 
-    /*@Override
+    /*
+    @Override
     public String getType() {
         return "weekly";
-    }*/
+    }
 
     @Override
     public String toString(){
         return "monthly";
+    }
+    */
+
+    @Override
+    public String toString(){
+        return "weekly";
     }
 }

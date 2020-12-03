@@ -13,7 +13,7 @@ public class MailMethod implements PaymentMethod {
 
     @Override
     public String toString(){
-        return String.format("mail : %s",mail);
+        return "mail";
     }
 
     @Override

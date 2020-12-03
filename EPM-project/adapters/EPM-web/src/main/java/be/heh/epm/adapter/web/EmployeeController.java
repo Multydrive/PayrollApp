@@ -1,5 +1,7 @@
 package be.heh.epm.adapter.web;
 
+import be.heh.epm.application.port.in.AddHourlyEmployeeUseCase;
+import be.heh.epm.application.port.in.EmployeeHourlyValidating;
 import be.heh.epm.application.port.in.EmployeeSalariedValidating;
 import be.heh.epm.application.port.in.AddSalariedEmployeeUseCase;
 import be.heh.epm.application.port.out.EmployeePort;
@@ -20,9 +22,11 @@ import java.net.URI;
 public class EmployeeController {
 
     private AddSalariedEmployeeUseCase addSalariedEmployee;
+    private AddHourlyEmployeeUseCase addHourlyEmployee;
 
-    public EmployeeController(AddSalariedEmployeeUseCase addSalariedEmployee){
+    public EmployeeController(AddSalariedEmployeeUseCase addSalariedEmployee, AddHourlyEmployeeUseCase addHourlyEmployee){
         this.addSalariedEmployee = addSalariedEmployee;
+        this.addHourlyEmployee = addHourlyEmployee;
     }
 
     @CrossOrigin
@@ -39,4 +43,21 @@ public class EmployeeController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
+
+    @CrossOrigin
+    @PostMapping("/employees/hourly")
+    ResponseEntity<Void> newEmployee(@Valid @RequestBody EmployeeHourlyValidating newEmployee) {
+
+
+        addHourlyEmployee.execute(newEmployee);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newEmployee.getEmpId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
 }

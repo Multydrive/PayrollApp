@@ -18,6 +18,7 @@ public class DirectDepositMethod implements PaymentMethod {
         return "direct";
     }
 
+
     @Override
     public void pay(PayCheck payCheck) {
         payCheck.setField("Disposition","Bank");
