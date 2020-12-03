@@ -43,10 +43,10 @@ public class EmployeePersistenceAdapterTest {
         salariedEmployee.setPayMethod(new DirectDepositMethod("ING","BE5555555555"));
         salariedEmployee.setPaySchedule(new MonthlyPaymentSchedule());
         Employee SavedEmployee = employeePersistenceAdapter.save(salariedEmployee);
-        Assertions.assertEquals("toto", SavedEmployee.getName());
-        Assertions.assertEquals("rue de Mons", SavedEmployee.getAddress());
+        Assertions.assertEquals("tata", SavedEmployee.getName());
+        Assertions.assertEquals("rue des Test", SavedEmployee.getAddress());
         Employee loadedEmployee = employeePersistenceAdapter.getEmployee(SavedEmployee.getEmpID());
-        Assertions.assertEquals("toto", loadedEmployee.getName(), "Employee name does not match");
-        Assertions.assertEquals("toto@heh.be", loadedEmployee.getMail(), "Employee mail does not match");
+        Assertions.assertEquals("tata", loadedEmployee.getName(), "Employee name does not match");
+        Assertions.assertEquals("toto@heh.com", loadedEmployee.getMail(), "Employee mail does not match");
     }
 }
