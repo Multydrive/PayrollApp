@@ -38,8 +38,8 @@ public class EmployeePersistenceAdapterTest {
     void SalariedEmployeeSaveTest() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         employeePersistenceAdapter = new EmployeePersistenceAdapter(jdbcTemplate,dataSource);
-        Employee salariedEmployee = new Employee("toto", "rue de Mons", "toto@heh.be");
-        salariedEmployee.setPayClassification(new SalariedClassification(1500));
+        Employee salariedEmployee = new Employee("tata", "rue des Test", "toto@heh.com");
+        salariedEmployee.setPayClassification(new SalariedClassification(15000));
         salariedEmployee.setPayMethod(new DirectDepositMethod("ING","BE5555555555"));
         salariedEmployee.setPaySchedule(new MonthlyPaymentSchedule());
         Employee SavedEmployee = employeePersistenceAdapter.save(salariedEmployee);
