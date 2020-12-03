@@ -72,7 +72,7 @@ public class EmployeePersistenceAdapter implements EmployeePort {
 
         if(employee.getPayClassification().toString()=="salaried"){
             Map<String, Object> parametersSalariedClassification = new HashMap<>(1);
-            parametersSalariedClassification.put("employee_id", employee.getEmpID());
+            parametersSalariedClassification.put("id", employee.getEmpID());
             SalariedClassification salariedClassification = (SalariedClassification)employee.getPayClassification();
             parametersSalariedClassification.put("salary", salariedClassification.getSalary());
             simpleJdbcInsertSalariedClassification.execute(parametersSalariedClassification);
