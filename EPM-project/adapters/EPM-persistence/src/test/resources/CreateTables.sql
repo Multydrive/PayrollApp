@@ -14,10 +14,8 @@ CREATE TABLE IF NOT EXISTS public."employee"
 CREATE TABLE IF NOT EXISTS public."salariedclassification"
 (
     "id" serial,
-    "employee_id" integer,
-    "salary" integer,
-    PRIMARY KEY ("id"),
-    CONSTRAINT "salaried_employee" FOREIGN KEY ("employee_id")
+    "salary" double precision,
+    CONSTRAINT "salaried_employee" FOREIGN KEY ("id")
         REFERENCES public."employee" ("id") MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -27,12 +25,10 @@ CREATE TABLE IF NOT EXISTS public."salariedclassification"
 CREATE TABLE IF NOT EXISTS public."directdepositmethod"
 (
     id serial,
-    employe_id integer,
     method character varying,
     bank character varying,
     num_account character varying,
-    PRIMARY KEY (id),
-    CONSTRAINT direct_employee FOREIGN KEY (employe_id)
+    CONSTRAINT direct_employee FOREIGN KEY (id)
         REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -42,10 +38,8 @@ CREATE TABLE IF NOT EXISTS public."directdepositmethod"
 CREATE TABLE IF NOT EXISTS public."mailmethod"
 (
     id serial,
-    employee_id integer,
     method character varying,
-    PRIMARY KEY (id),
-    CONSTRAINT mail_employee FOREIGN KEY (employee_id)
+    CONSTRAINT mail_employee FOREIGN KEY (id)
         REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -69,6 +63,18 @@ CREATE TABLE public.timecard
     date character varying(15),
     hour integer,
     CONSTRAINT "HourlyId" FOREIGN KEY (id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+CREATE TABLE public.commissionclassification
+(
+    id integer,
+    salary integer,
+    commission double precision,
+    CONSTRAINT "CommId" FOREIGN KEY (id)
         REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION

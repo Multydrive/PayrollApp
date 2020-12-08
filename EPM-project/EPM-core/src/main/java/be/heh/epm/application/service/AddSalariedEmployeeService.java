@@ -9,7 +9,6 @@ import be.heh.epm.domain.*;
 @UseCase
 public class AddSalariedEmployeeService implements AddSalariedEmployeeUseCase {
 
-    //private AddEmployeeSalariedValidating addEmployeeSalariedValidating;
     private EmployeePort employeePort;
 
     public AddSalariedEmployeeService(EmployeePort employeePort) {

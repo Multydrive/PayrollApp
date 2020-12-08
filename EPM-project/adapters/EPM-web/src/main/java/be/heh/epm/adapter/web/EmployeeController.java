@@ -1,9 +1,6 @@
 package be.heh.epm.adapter.web;
 
-import be.heh.epm.application.port.in.AddHourlyEmployeeUseCase;
-import be.heh.epm.application.port.in.EmployeeHourlyValidating;
-import be.heh.epm.application.port.in.EmployeeSalariedValidating;
-import be.heh.epm.application.port.in.AddSalariedEmployeeUseCase;
+import be.heh.epm.application.port.in.*;
 import be.heh.epm.application.port.out.EmployeePort;
 import be.heh.epm.application.service.AddSalariedEmployeeService;
 import be.heh.epm.common.WebAdapter;
@@ -23,10 +20,12 @@ public class EmployeeController {
 
     private AddSalariedEmployeeUseCase addSalariedEmployee;
     private AddHourlyEmployeeUseCase addHourlyEmployee;
+    private AddCommissionEmployeeUseCase addCommissionEmployee ;
 
-    public EmployeeController(AddSalariedEmployeeUseCase addSalariedEmployee, AddHourlyEmployeeUseCase addHourlyEmployee){
+    public EmployeeController(AddSalariedEmployeeUseCase addSalariedEmployee, AddHourlyEmployeeUseCase addHourlyEmployee, AddCommissionEmployeeUseCase addCommissionEmployee){
         this.addSalariedEmployee = addSalariedEmployee;
         this.addHourlyEmployee = addHourlyEmployee;
+        this.addCommissionEmployee = addCommissionEmployee;
     }
 
     @CrossOrigin
@@ -51,6 +50,21 @@ public class EmployeeController {
 
 
         addHourlyEmployee.execute(newEmployee);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newEmployee.getEmpId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @CrossOrigin
+    @PostMapping("/employees/commission")
+    ResponseEntity<Void> newEmployee(@Valid @RequestBody EmployeeCommissionValidating newEmployee) {
+
+
+        addCommissionEmployee.execute(newEmployee);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

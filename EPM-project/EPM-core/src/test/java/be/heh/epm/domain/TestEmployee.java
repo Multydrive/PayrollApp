@@ -119,4 +119,57 @@ public class TestEmployee {
         assertFalse(employee.isDatePay(MondayDate));
 
     }
+
+    @Ignore
+    @Test
+    public void createCommissionEmployee() {
+
+        employee.setPayClassification(new CommissionClassification(1200,0.10));
+        employee.setPayMethod(new MailMethod(employee.getMail()));
+        employee.setPaySchedule(new WeeklyPaymentSchedule());
+
+        LocalDate date = LocalDate.of(2019, 10, 1);
+        LocalDate nextDate = LocalDate.of(2019, 10, 2);
+        LocalDate dateOutside = LocalDate.of(2019, 9, 2);
+
+        PaymentClassification classification = employee.getPayClassification();
+        ((CommissionClassification) classification).addSaleReceipt(new SaleReceipt (date, 120));
+        ((CommissionClassification) classification).addSaleReceipt(new SaleReceipt(nextDate, 100));
+        ((CommissionClassification) classification).addSaleReceipt(new SaleReceipt(dateOutside, 80));
+
+        employee.payDay(pc);
+        double pay = pc.getSalary();
+
+        assertEquals(1222.0, pay, 0.01);
+
+        PaymentSchedule ps = employee.getPaySchedule();
+        assertTrue(ps instanceof WeeklyPaymentSchedule);
+        /*
+        PaymentMethod pm = employee.getPayMethod();
+        assertEquals("mail : toto@gmail.com", pm.toString());
+         */
+    }
+
+    @Ignore
+    @Test
+    public void biMonthlyPaymentSchedule() {
+        employee.setPayClassification(new SalariedClassification(1000));
+        employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
+        employee.setPaySchedule(new BimonthlyPaymentSchedule());
+
+        LocalDate fridayDate = LocalDate.of(2020, 10, 9);
+        assertTrue(employee.isDatePay(fridayDate));
+    }
+
+    @Ignore
+    @Test
+    public void biMonthlyPaymentScheduleWrong() {
+        employee.setPayClassification(new SalariedClassification(1000));
+        employee.setPayMethod(new DirectDepositMethod("ING", "be80-4444-444"));
+        employee.setPaySchedule(new BimonthlyPaymentSchedule());
+
+        LocalDate MondayDate = LocalDate.of(2020, 10, 8);
+        assertFalse(employee.isDatePay(MondayDate));
+    }
+
 }

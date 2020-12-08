@@ -2,10 +2,7 @@ package be.heh.epm.adapter.persistence;
 
 import be.heh.epm.application.port.out.EmployeePort;
 import be.heh.epm.common.PersistenceAdapter;
-import be.heh.epm.domain.DirectDepositMethod;
-import be.heh.epm.domain.Employee;
-import be.heh.epm.domain.HourlyClassification;
-import be.heh.epm.domain.SalariedClassification;
+import be.heh.epm.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,7 +13,6 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @PersistenceAdapter
 public class EmployeePersistenceAdapter implements EmployeePort {
@@ -28,6 +24,7 @@ public class EmployeePersistenceAdapter implements EmployeePort {
     private final SimpleJdbcInsert simpleJdbcInsertPaymentMethod;
     private final SimpleJdbcInsert simpleJdbcInsertSalariedClassification;
     private final SimpleJdbcInsert simpleJdbcInsertHourlyClassification;
+    private final SimpleJdbcInsert simpleJdbcInsertCommissionClassification;
     private final DataSource dataSource;
 
     public EmployeePersistenceAdapter(JdbcTemplate jdbcTemplate, DataSource dataSource) {
@@ -37,6 +34,7 @@ public class EmployeePersistenceAdapter implements EmployeePort {
         this.simpleJdbcInsertPaymentMethod = new SimpleJdbcInsert(dataSource).withTableName("directdepositmethod");
         this.simpleJdbcInsertSalariedClassification = new SimpleJdbcInsert(dataSource).withTableName("salariedclassification");
         this.simpleJdbcInsertHourlyClassification = new SimpleJdbcInsert(dataSource).withTableName("hourlyclassification");
+        this.simpleJdbcInsertCommissionClassification = new SimpleJdbcInsert(dataSource).withTableName("commissionclassification");
     }
 
     @Override
@@ -93,7 +91,12 @@ public class EmployeePersistenceAdapter implements EmployeePort {
         }
 
         else {
-           int tmp;
+            Map<String, Object> parametersCommissionClassification = new HashMap<>(1);
+            parametersCommissionClassification.put("id", employee.getEmpID());
+            CommissionClassification commissionclassification = (CommissionClassification)employee.getPayClassification();
+            parametersCommissionClassification.put("salary", commissionclassification.getAmount());
+            parametersCommissionClassification.put("commission", commissionclassification.getCommission_rate());
+            simpleJdbcInsertCommissionClassification.execute(parametersCommissionClassification);
         }
 
         if (employee.getPayMethod().toString()=="direct") {

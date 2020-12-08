@@ -29,8 +29,8 @@ public class EmployeePersistenceAdapterTest {
 
     @Autowired
     private EmployeePersistenceAdapter employeePersistenceAdapter;
-
     /*
+    @Ignore
     @Test
     void SalariedEmployeeSaveTest() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -47,7 +47,8 @@ public class EmployeePersistenceAdapterTest {
         Assertions.assertEquals("toto@heh.com", loadedEmployee.getMail(), "Employee mail does not match");
     }
 
-     */
+
+
 
     @Test
     void HourlyEmployeeSaveTest() {
@@ -63,6 +64,23 @@ public class EmployeePersistenceAdapterTest {
         Employee loadedEmployee = employeePersistenceAdapter.getEmployee(SavedEmployee.getEmpID());
         Assertions.assertEquals("tutu", loadedEmployee.getName(), "Employee name does not match");
         Assertions.assertEquals("tutu@heh.com", loadedEmployee.getMail(), "Employee mail does not match");
+    }
+    */
+
+    @Test
+    void CommissionEmployeeSaveTest() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        employeePersistenceAdapter = new EmployeePersistenceAdapter(jdbcTemplate,dataSource);
+        Employee commissionEmployee = new Employee("titi", "rue des titi 2", "titi@heh.com");
+        commissionEmployee.setPayClassification(new CommissionClassification(11,0.10));
+        commissionEmployee.setPayMethod(new DirectDepositMethod("JAMBON", "BE177733333333"));
+        commissionEmployee.setPaySchedule(new BimonthlyPaymentSchedule());
+        Employee SavedEmployee = employeePersistenceAdapter.save(commissionEmployee);
+        Assertions.assertEquals("titi", SavedEmployee.getName());
+        Assertions.assertEquals("rue des titi 2", SavedEmployee.getAddress());
+        Employee loadedEmployee = employeePersistenceAdapter.getEmployee(SavedEmployee.getEmpID());
+        Assertions.assertEquals("titi", loadedEmployee.getName(), "Employee name does not match");
+        Assertions.assertEquals("titi@heh.com", loadedEmployee.getMail(), "Employee mail does not match");
     }
 
 }

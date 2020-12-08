@@ -9,7 +9,6 @@ import be.heh.epm.domain.*;
 @UseCase
 public class AddHourlyEmployeeService implements AddHourlyEmployeeUseCase {
 
-    //private AddemployeeHourlyValidating addemployeeHourlyValidating;
     private EmployeePort employeePort;
 
     public AddHourlyEmployeeService(EmployeePort employeePort) {
