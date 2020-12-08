@@ -19,7 +19,7 @@ public class AddHourlyEmployeeService implements AddHourlyEmployeeUseCase {
     public void execute(EmployeeHourlyValidating employeeHourlyValidating) {
         PaymentClassification pc = new HourlyClassification(employeeHourlyValidating.getRate());
         PaymentSchedule ps = new WeeklyPaymentSchedule();
-        PaymentMethod pm = new DirectDepositMethod("Fortis","be332211");
+        PaymentMethod pm = new DirectDepositMethod(employeeHourlyValidating.getBank(),employeeHourlyValidating.getAccount());
 
         Employee e = new Employee(employeeHourlyValidating.getName(),employeeHourlyValidating.getAddress(),employeeHourlyValidating.getMail());
         e.setPayClassification(pc);

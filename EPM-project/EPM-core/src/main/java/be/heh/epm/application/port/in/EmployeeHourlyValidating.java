@@ -32,4 +32,14 @@ public class EmployeeHourlyValidating {
     @Getter
     @Setter
     private double rate;
+    @NotNull
+    @NotEmpty
+    @Getter
+    @Setter
+    private String bank;
+    @NotNull
+    @NotEmpty
+    @Getter
+    @Setter
+    private String account;
 }

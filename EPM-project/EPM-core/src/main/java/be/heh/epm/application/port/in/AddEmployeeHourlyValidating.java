@@ -23,14 +23,22 @@ public class AddEmployeeHourlyValidating extends SelfValidating<AddEmployeeHourl
     @NotNull
     @Getter
     private double rate;
+    @NotNull
+    @Getter
+    private String bank;
+    @NotNull
+    @Getter
+    private String account;
 
 
-    public AddEmployeeHourlyValidating(int empId, String name, String address, String mail, double rate) {
+    public AddEmployeeHourlyValidating(int empId, String name, String address, String mail, double rate, String bank, String account) {
         this.empId = empId;
         this.name = name;
         this.address = address;
         this.mail = mail;
         this.rate = rate;
+        this.bank = bank;
+        this.account = account;
         this.validateSelf();
     }
 }
