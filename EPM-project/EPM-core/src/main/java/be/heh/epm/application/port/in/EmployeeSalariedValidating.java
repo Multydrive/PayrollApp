@@ -32,5 +32,15 @@ public class EmployeeSalariedValidating {
     @Getter
     @Setter
     private double monthlySalary;
+    @NotNull
+    @NotEmpty
+    @Getter
+    @Setter
+    private String bank;
+    @NotNull
+    @NotEmpty
+    @Getter
+    @Setter
+    private String account;
 
 }

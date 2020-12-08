@@ -19,7 +19,7 @@ public class AddSalariedEmployeeService implements AddSalariedEmployeeUseCase {
     public void execute(EmployeeSalariedValidating employeeSalariedValidating) {
         PaymentClassification pc = new SalariedClassification(employeeSalariedValidating.getMonthlySalary());
         PaymentSchedule ps = new MonthlyPaymentSchedule();
-        PaymentMethod pm = new DirectDepositMethod("Fortis","be332211");
+        PaymentMethod pm = new DirectDepositMethod(employeeSalariedValidating.getBank(),employeeSalariedValidating.getAccount());
 
         Employee e = new Employee(employeeSalariedValidating.getName(),employeeSalariedValidating.getAddress(),employeeSalariedValidating.getMail());
         e.setPayClassification(pc);

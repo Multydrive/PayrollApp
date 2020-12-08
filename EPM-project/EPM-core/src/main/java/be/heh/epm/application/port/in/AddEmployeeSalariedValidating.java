@@ -23,14 +23,22 @@ public class AddEmployeeSalariedValidating extends SelfValidating<AddEmployeeSal
     @NotNull
     @Getter
     private double monthlySalary;
+    @NotNull
+    @Getter
+    private String bank;
+    @NotNull
+    @Getter
+    private String account;
 
 
-    public AddEmployeeSalariedValidating(int empId, String name, String address, String mail, double monthlySalary) {
+    public AddEmployeeSalariedValidating(int empId, String name, String address, String mail, double monthlySalary, String bank, String account) {
         this.empId = empId;
         this.name = name;
         this.address = address;
         this.mail = mail;
         this.monthlySalary = monthlySalary;
+        this.bank = bank;
+        this.account = account;
         this.validateSelf();
     }
 }
