@@ -29,10 +29,12 @@ public class EmployeeCommissionValidating {
     @Setter
     private String mail;
     @NotNull
+    @NotEmpty
     @Getter
     @Setter
     private double monthlySalary;
     @NotNull
+    @NotEmpty
     @Getter
     @Setter
     private double commission_rate;

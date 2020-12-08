@@ -2,12 +2,11 @@ package be.heh.epm.application.port.in;
 
 import be.heh.epm.common.SelfValidating;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-public class AddCommissionValidating extends SelfValidating<AddCommissionValidating> {
+public class AddEmployeeCommissionValidating extends SelfValidating<AddEmployeeCommissionValidating> {
     @NotNull
     @Getter
     private int empId;
@@ -35,15 +34,15 @@ public class AddCommissionValidating extends SelfValidating<AddCommissionValidat
     private String account;
 
 
-    public AddCommissionValidating(int empId, String name, String address, String mail, double monthlySalary, String bank, String account, double commission_rate) {
+    public AddEmployeeCommissionValidating(int empId, String name, String address, String mail, double monthlySalary,double commission_rate, String bank, String account) {
         this.empId = empId;
         this.name = name;
         this.address = address;
         this.mail = mail;
         this.monthlySalary = monthlySalary;
+        this.commission_rate = commission_rate;
         this.bank = bank;
         this.account = account;
-        this.commission_rate = commission_rate;
         this.validateSelf();
     }
 }
