@@ -7,3 +7,5 @@ spring:
     platform: postgres
     initialization-mode: always
     continue-on-error: true
+server:
+  port: ${PORT}
